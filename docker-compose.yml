@@ -1,0 +1,17 @@
+# Use postgres/example user/password credentials
+version: '3.9'
+
+services:
+  db:
+    image: postgres:12-alpine
+    container_name: music_vs_store_db
+    restart: always
+    shm_size: 128mb
+    volumes: 
+      - ./db/postgres_db:/var/lib/postgresql/data
+    ports:
+      - 1234:5432
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+
