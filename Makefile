@@ -10,6 +10,9 @@ build-dev:
 dev:
 	docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d
 
+run-dev:
+	docker compose -f docker-compose.yml -f docker-compose.dev.yml up
+
 stop:
 	docker compose down
 
@@ -36,5 +39,8 @@ create-db:
 
 drop-db:
 	docker exec -it music_vs_store_db dropdb --username=admin postgres_db
+
+sqlc: 
+	docker exec -it music sqlc generate
 
 .PHONY: createdb dropdb migrate-up migrate-down copy-dump run-seeder reset-db sqlc clear-images

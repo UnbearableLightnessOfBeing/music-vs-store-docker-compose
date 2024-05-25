@@ -1,0 +1,15 @@
+server {
+  listen 80;
+  server_name example.local;
+
+  location /admin {
+    proxy_pass http://admin-frontend:5173; 
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+  }
+
+  location / {
+    proxy_pass http://music:3002;
+  }
+}
