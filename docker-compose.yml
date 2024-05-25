@@ -1,11 +1,11 @@
-# Use postgres/example user/password credentials
-version: '3.9'
+version: '3'
 
 services:
+
   db:
     image: postgres:12-alpine
     container_name: music_vs_store_db
-    restart: always
+    restart: unless-stopped
     shm_size: 128mb
     volumes: 
       - ./db/postgres_db:/var/lib/postgresql/data
@@ -14,4 +14,37 @@ services:
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
+    networks:
+      - music_vs_store_network
+        
+  site:
+    build: ./site
+    container_name: music_vs_store_site
+    command: app
+    restart: unless-stopped
+    environment:
+      - PORT=3001
+    ports:
+      - 3001:3001
+    networks:
+      - music_vs_store_network
 
+  music:
+    build: ./music_vs_store
+    container_name: music
+    command: /usr/local/bin/music/music_vs_store
+    restart: unless-stopped
+    depends_on:
+      - db
+    environment:
+      - SERVER_PORT=:3002
+      - DB_SOURCE=postgresql://admin:admin@db:5432/postgres_db?sslmode=disable
+      - DB_DRIVER=postgres
+    ports:
+      - 3002:3002
+    networks:
+      - music_vs_store_network
+
+networks:
+  music_vs_store_network:
+    driver: bridge

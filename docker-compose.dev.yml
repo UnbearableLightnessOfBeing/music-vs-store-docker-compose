@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  site:
+    build:
+      context: ./site/
+      dockerfile: Dockerfile.dev
+    command: air -c .air.toml
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./site:/app
+
+  music:
+    build:
+      context: ./music_vs_store/
+      dockerfile: Dockerfile.dev
+    command: air -c .air.toml
+    volumes:
+      - ./music_vs_store:/usr/src/music
