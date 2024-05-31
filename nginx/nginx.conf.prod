@@ -2,11 +2,11 @@ server {
   listen 80;
   server_name music_vs_store.ru;
 
-  location /admin {
-    proxy_pass http://admin-frontend:4173; 
-  }
-
   location / {
     proxy_pass http://music:3002;
+  }
+
+  location /admin {
+    proxy_pass http://admin-frontend:4173; 
   }
 }

@@ -1,44 +1,27 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import { ref } from 'vue'
+import AdminSidebar from './components/AdminSidebar.vue'
+import PanelHeader from './components/PanelHeader.vue'
+import UsersTable from './components/UsersTable.vue'
 
-const jsonMessage = ref()
-
-const fetchData = async () => {
-  const res = await fetch('http://localhost:8081/api/admin')
-  const json = await res.json()
-  console.log('response from server: ', json)
-  jsonMessage.value = json.message
-}
-
-fetchData()
 </script>
 
 <template>
   <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+    <div class="grid min-h-screen w-full overflow-hidden lg:grid-cols-[280px_1fr]">
+  <div class="hidden border-r bg-gray-100/40 lg:block">
+  <admin-sidebar />
   </div>
-  <HelloWorld msg="Vite + Vue" />
-  <div>my-div-aboba</div>
-  <div style="margin-top: 20px; padding: 10px; background: blue; color: red;">{{ jsonMessage }}</div>
+  <div class="flex flex-col">
+    <panel-header 
+      :heading="'Heading'"
+    />
+    <main class="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-6">
+      <users-table />
+    </main>
+  </div>
+</div>
+  </div>
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
 </style>
