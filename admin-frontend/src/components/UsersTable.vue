@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import api from '../../api'
 import { ref } from 'vue'
 
 type User = {
@@ -14,17 +15,13 @@ type User = {
 const users = ref<User[]>([])
 
 const fetchUsers = async () => {
-  const res = await fetch('/api/admin/users')
-  users.value  =  (await res.json() as { users: User[] }).users
+  const res = await api.get<{ users: User[]}>('/users')
+  users.value  = res.data.users
 }
 fetchUsers()
 
 const userToggleIsAdmin = async (id: number) => {
-  await fetch(`http://localhost:8081/api/admin/users/${id}`, {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({})
-  })
+  await api.put(`/users/${id}`)
   fetchUsers()
 }
 </script>

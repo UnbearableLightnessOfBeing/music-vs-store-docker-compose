@@ -1,12 +1,13 @@
 <script setup lang="ts">
+import { RouterLink } from 'vue-router'
 
 const tabs = [
-  'Dashboard',
-  'Users',
-  'Categories',
-  'Products',
-  'Labels',
-  'Orders'
+  { text:   'Dashboard', path: '/admin/' },
+  { text:   'Users', path: '/admin/users' },
+  { text:   'Products', path: '/admin/products' },
+  { text:   'Categories', path: '/admin/categories' },
+  { text:   'Labels', path: '/admin/labels' },
+  { text:   'Orders', path: '/admin/orders' }
 ]
 
 </script>
@@ -36,15 +37,16 @@ const tabs = [
     </div>
     <div class="flex-1">
       <nav class="grid items-start px-4 text-sm font-medium">
-        <a
+        <router-link
           v-for="(tab, idx) in tabs"
-          :key="tab"
+          :to="tab.path"
+          :key="tab.text"
           class="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 hover:text-gray-900"
           :class=" idx === 0 ? 'text-gray-900 bg-gray-200 hover:bg-gray-200 hover:text-gray-900' : 'hover:bg-gray-100'" 
           href="#"
         >
-          {{ tab }}
-        </a>
+          {{ tab.text }}
+        </router-link>
       </nav>
     </div>
   </div>
