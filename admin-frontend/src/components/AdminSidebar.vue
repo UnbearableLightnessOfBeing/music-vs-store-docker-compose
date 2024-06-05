@@ -3,11 +3,11 @@ import { RouterLink } from 'vue-router'
 
 const tabs = [
   { text:   'Dashboard', path: '/admin/' },
-  { text:   'Users', path: '/admin/users' },
-  { text:   'Products', path: '/admin/products' },
-  { text:   'Categories', path: '/admin/categories' },
-  { text:   'Labels', path: '/admin/labels' },
-  { text:   'Orders', path: '/admin/orders' }
+  { text:   'Пользователи', path: '/admin/users' },
+  { text:   'Товары', path: '/admin/products' },
+  { text:   'Категории', path: '/admin/categories' },
+  { text:   'Производители', path: '/admin/labels' },
+  { text:   'Заказы', path: '/admin/orders' }
 ]
 
 </script>
@@ -38,11 +38,11 @@ const tabs = [
     <div class="flex-1">
       <nav class="grid items-start px-4 text-sm font-medium">
         <router-link
-          v-for="(tab, idx) in tabs"
+          v-for="(tab) in tabs"
           :to="tab.path"
           :key="tab.text"
-          class="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 hover:text-gray-900"
-          :class=" idx === 0 ? 'text-gray-900 bg-gray-200 hover:bg-gray-200 hover:text-gray-900' : 'hover:bg-gray-100'" 
+          class="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 hover:text-gray-900 hover:bg-gray-100"
+          active-class="text-gray-900 bg-gray-200 hover:bg-gray-200 hover:text-gray-900 transition"
           href="#"
         >
           {{ tab.text }}
