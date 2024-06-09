@@ -3,6 +3,7 @@ import { ref } from "vue";
 import { RouterLink } from "vue-router";
 import type { Product } from "../types/products";
 import api from "../../api";
+import AddItemButton from './AddItemButton.vue'
 
 const products = ref<Product[]>([]);
 
@@ -21,17 +22,10 @@ const deleteProduct = async (id: number) => {
 
 <template>
   <div class="space-y-4">
-    <router-link 
-      :to="`/admin/products/create`"
-      class="flex gap-3 justify-center items-center w-fit text-white bg-green-500 p-4 rounded-md hover:bg-green-400"
-    >
-      <div 
-        class="p-2 border border-white rounded-full h-10 w-10 flex justify-center items-center cursor-pointer"
-      >
-        <p class="text-2xl h-[36px]">+</p>
-      </div>
-      <div class="text-lg">Создать новый товар</div>
-    </router-link>
+    <add-item-button 
+      :path="'/admin/products/create'"
+      :text="'Создать новый товар'"
+    />
     <div class="border shadow-sm rounded-lg p-2">
       <div class="relative w-full overflow-auto">
         <table class="w-full caption-bottom text-sm">

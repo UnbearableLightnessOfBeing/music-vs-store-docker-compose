@@ -12,7 +12,7 @@ import { RouterView } from 'vue-router';
   </div>
   <div class="flex flex-col">
     <panel-header 
-      :heading="'Heading'"
+      :heading="'Панель администратора'"
     />
     <main class="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-6">
       <router-view v-slot="{ Component }">

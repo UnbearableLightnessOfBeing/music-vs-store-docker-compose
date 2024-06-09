@@ -7,3 +7,8 @@ export type Category = {
     Valid: boolean
   }
 }
+
+export type CategoryForm = {
+  name: string
+  slug: string
+}

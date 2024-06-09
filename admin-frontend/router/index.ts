@@ -7,6 +7,8 @@ import OrdersPage from '../src/components/OrdersPage.vue'
 import ProductsPage from '../src/components/ProductsPage.vue'
 import ProductPage from '../src/components/ProductPage.vue'
 import CreateProduct from '../src/components/CreateProduct.vue'
+import CreateCategory from '../src/components/CreateCategory.vue'
+import CategoryPage from '../src/components/CategoryPage.vue'
 
 const routes = [
   { path: '/admin/', component: DashboardPage },
@@ -15,6 +17,8 @@ const routes = [
   { path: '/admin/products/create', component: CreateProduct },
   { path: '/admin/products/:id', component: ProductPage },
   { path: '/admin/categories', component: CategoriesPage },
+  { path: '/admin/categories/create', component: CreateCategory },
+  { path: '/admin/categories/:id', component: CategoryPage },
   { path: '/admin/labels', component: LabelsPage },
   { path: '/admin/orders', component: OrdersPage },
 ]
