@@ -19,9 +19,12 @@ const form = ref<ProductFormType>({
   characteristics: "",
 });
 
+const images = ref<string[] | null>([])
+
 const getProduct = async () => {
   const res = await api.get<{ product: Product }>(`/products/${route.params.id}`)
   form.value = convertResponseToProductForm(res.data.product)
+  images.value = res.data.product.images
 }
 getProduct()
 
@@ -41,10 +44,41 @@ const updateProduct = async () => {
     ))?.message;
   }
 };
+
+const deleteImage = async (image: string) => {
+  await api.post(`/products/${route.params.id}/images_remove`, { image_name: image  })
+  getProduct()
+}
+
+// const addImage = async ()
 </script>
 
 <template>
   <div class="max-w-[1000px] space-y-4">
+    <div class="space-y-2">
+        <h2 class="text-2xl">Изображения</h2> 
+        <div 
+          v-if="images !== null && images.length > 0"
+          class="grid grid-cols-4 gap-10"
+        >
+          <div 
+            v-for="image in images" 
+            :key="image"
+            class="max-w-[250px] relative group"
+          >
+            <img 
+              :src="image"
+            />
+            <div 
+              class="absolute top-0 right-0 px-2 py-1 rounded-md bg-rose-400 bg-opacity-50 cursor-pointer hidden group-hover:block hover:bg-opacity-100 hover:text-white"
+              @click="deleteImage(image)"
+            >
+              Удалить
+            </div>
+          </div>
+        </div>
+        <div v-else>Нет изображений</div>
+    </div>
     <product-form 
       :form="form"
       @update:formValue="(propName, value) => {
