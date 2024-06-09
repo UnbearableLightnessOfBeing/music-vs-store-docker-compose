@@ -3,6 +3,7 @@ import InputField from './InputField.vue';
 import { InputType } from '../types/input'
 import { ProductForm } from '../types/products'
 import { Label } from '../types/labels'
+import { Category } from '../types/categories'
 import { ref } from 'vue'
 import api from '../../api'
 
@@ -19,6 +20,12 @@ const labels = ref<Label[]>([]);
 (async () => {
   const res = await api.get<{ labels: Label[] }>("/labels");
   labels.value = res.data.labels;
+})();
+
+const categories = ref<Category[]>([]);
+(async () => {
+  const res = await api.get<{ categories: Category[] }>("/categories");
+  categories.value = res.data.categories;
 })();
 </script>
 
@@ -44,8 +51,6 @@ const labels = ref<Label[]>([]);
     <input-field :model-value="''" name="label_id" label="Призводитель">
       <select
         class="border border-primary p-1 rounded-sm"
-        name="price_sorting"
-        id="price_sorting"
         :value="form.label_id"
         @change="(evt) => $emit('update:formValue', 'label_id', Number((<HTMLSelectElement>evt.target).value))"
       >
@@ -54,6 +59,21 @@ const labels = ref<Label[]>([]);
         </option>
         <option v-for="label in labels" :key="label.id" :value="label.id">
           {{ label.name }}
+        </option>
+      </select>
+    </input-field>
+
+    <input-field :model-value="''" name="category_id" label="Категория">
+      <select
+        class="border border-primary p-1 rounded-sm"
+        :value="form.category_id"
+        @change="(evt) => $emit('update:formValue', 'category_id', Number((<HTMLSelectElement>evt.target).value))"
+      >
+        <option :value="0" class="hidden" selected>
+          Выберите категорию
+        </option>
+        <option v-for="category in categories" :key="category.id" :value="category.id">
+          {{ category.name }}
         </option>
       </select>
     </input-field>

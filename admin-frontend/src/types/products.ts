@@ -16,6 +16,10 @@ export type Product = {
       "Valid": boolean
     },
     "in_stock": boolean
+    "category_id": {
+      "Int32": number
+      "Valid": boolean
+    }
   }
 
 export type ProductForm = {
@@ -25,6 +29,7 @@ export type ProductForm = {
   label_id: number
   description: string
   characteristics: string
+  category_id: number
 }
 
 export function convertResponseToProductForm(response: Product): ProductForm {
@@ -35,5 +40,6 @@ export function convertResponseToProductForm(response: Product): ProductForm {
     label_id: response.label_id.Valid ? response.label_id.Int32 : 0,
     description: response.description.Valid ? response.description.String : "",
     characteristics: response.characteristics.Valid ? response.characteristics.String : "",
+    category_id: response.category_id.Valid ? response.category_id.Int32 : 0
   } 
 }

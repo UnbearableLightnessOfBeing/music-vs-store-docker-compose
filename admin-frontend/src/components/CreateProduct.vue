@@ -15,6 +15,7 @@ const form = reactive<ProductFormType>({
   label_id: 0,
   description: "",
   characteristics: "",
+  category_id: 0
 });
 
 const errorMessage = ref("");

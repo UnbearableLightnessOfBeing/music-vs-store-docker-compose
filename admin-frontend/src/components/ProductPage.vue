@@ -17,6 +17,7 @@ const form = ref<ProductFormType>({
   label_id: 0,
   description: "",
   characteristics: "",
+  category_id: 0
 });
 
 const images = ref<string[] | null>([])
@@ -50,7 +51,23 @@ const deleteImage = async (image: string) => {
   getProduct()
 }
 
-// const addImage = async ()
+const formRef = ref<HTMLFormElement | null>(null)
+const inputRef = ref<HTMLInputElement | null>(null)
+const addImage = async () => {
+  if (inputRef.value) {
+    if (inputRef.value.files) {
+      await api.post(`/products/${route.params.id}/images_add`, {
+        image: inputRef.value.files[0]
+      }, {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }
+      })
+      formRef.value?.reset()
+    }
+  }
+  getProduct()
+}
 </script>
 
 <template>
@@ -70,7 +87,7 @@ const deleteImage = async (image: string) => {
               :src="image"
             />
             <div 
-              class="absolute top-0 right-0 px-2 py-1 rounded-md bg-rose-400 bg-opacity-50 cursor-pointer hidden group-hover:block hover:bg-opacity-100 hover:text-white"
+              class="absolute top-2 right-2 px-2 py-1 rounded-md bg-rose-400 bg-opacity-50 cursor-pointer hidden group-hover:block hover:bg-opacity-100 hover:text-white"
               @click="deleteImage(image)"
             >
               Удалить
@@ -78,6 +95,22 @@ const deleteImage = async (image: string) => {
           </div>
         </div>
         <div v-else>Нет изображений</div>
+        <form 
+          ref="formRef" 
+          class="space-y-2 ml-auto w-fit"
+          @submit.prevent
+        >
+          <label for="image">Добавить изображение</label>
+          <div class="block">
+            <input ref="inputRef" type="file" id="image" name="image">
+            <button 
+              class="px-4 py-2 rounded-sm border border-green-400 hover:bg-green-400 hover:text-white"
+              @click="addImage"
+            >
+              Добавить
+            </button>
+          </div>
+        </form>
     </div>
     <product-form 
       :form="form"
