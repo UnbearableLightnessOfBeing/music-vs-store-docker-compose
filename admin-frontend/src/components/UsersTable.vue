@@ -45,7 +45,7 @@ const userToggleIsAdmin = async (id: number) => {
               Admin
             </th>
             <th class="h-12 px-4 align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0 text-right">
-              Actions
+              Действия
             </th>
           </tr>
         </thead>
