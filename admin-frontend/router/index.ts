@@ -3,6 +3,8 @@ import UsersTable from '../src/components/UsersTable.vue'
 import DashboardPage from '../src/components/DashboardPage.vue'
 import CategoriesPage from '../src/components/CategoriesPage.vue'
 import LabelsPage from '../src/components/LabelsPage.vue'
+import LabelPage from '../src/components/LabelPage.vue'
+import CreateLabel from '../src/components/CreateLabel.vue'
 import OrdersPage from '../src/components/OrdersPage.vue'
 import ProductsPage from '../src/components/ProductsPage.vue'
 import ProductPage from '../src/components/ProductPage.vue'
@@ -20,6 +22,8 @@ const routes = [
   { path: '/admin/categories/create', component: CreateCategory },
   { path: '/admin/categories/:id', component: CategoryPage },
   { path: '/admin/labels', component: LabelsPage },
+  { path: '/admin/labels/create', component: CreateLabel },
+  { path: '/admin/labels/:id', component: LabelPage },
   { path: '/admin/orders', component: OrdersPage },
 ]
 

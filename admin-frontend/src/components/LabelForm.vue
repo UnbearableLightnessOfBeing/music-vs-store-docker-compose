@@ -1,15 +1,14 @@
 <script setup lang="ts">
 import InputField from './InputField.vue';
-import { CategoryForm } from '../types/categories'
+import { LabelForm } from '../types/labels'
 
 defineProps<{
-  form: CategoryForm
+  form: LabelForm
 }>()
 
 defineEmits<{
-  (e: 'update:formValue', propName: keyof CategoryForm, value: CategoryForm): void
+  (e: 'update:formValue', propName: keyof LabelForm, value: LabelForm): void
 }>()
-
 </script>
 
 <template>
@@ -21,14 +20,6 @@ defineEmits<{
       placeholder="Введите название"
       required
       @update:model-value="(value: string | number | boolean) => $emit('update:formValue', 'name', value)"
-    />
-    <input-field
-      :model-value="form.slug"
-      name="slug"
-      label="Slug"
-      placeholder="Введите slug"
-      required
-      @update:model-value="(value: string | number | boolean) => $emit('update:formValue', 'slug', value)"
     />
   </div>
 </template>

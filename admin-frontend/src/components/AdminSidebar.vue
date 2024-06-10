@@ -32,7 +32,7 @@ const tabs = [
           <path d="m3 9 2.45-4.9A2 2 0 0 1 7.24 3h9.52a2 2 0 0 1 1.8 1.1L21 9"></path>
           <path d="M12 3v6"></path>
         </svg>
-        <span class="">Music VS Store</span>
+        <span class="">Music VS Shop</span>
       </a>
     </div>
     <div class="flex-1">
