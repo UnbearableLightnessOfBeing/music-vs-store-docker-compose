@@ -6,6 +6,7 @@ import LabelsPage from '../src/components/LabelsPage.vue'
 import LabelPage from '../src/components/LabelPage.vue'
 import CreateLabel from '../src/components/CreateLabel.vue'
 import OrdersPage from '../src/components/OrdersPage.vue'
+import OrderPage from '../src/components/OrderPage.vue'
 import ProductsPage from '../src/components/ProductsPage.vue'
 import ProductPage from '../src/components/ProductPage.vue'
 import CreateProduct from '../src/components/CreateProduct.vue'
@@ -25,6 +26,7 @@ const routes = [
   { path: '/admin/labels/create', component: CreateLabel },
   { path: '/admin/labels/:id', component: LabelPage },
   { path: '/admin/orders', component: OrdersPage },
+  { path: '/admin/orders/:id', component: OrderPage },
 ]
 
 export const router = createRouter({
