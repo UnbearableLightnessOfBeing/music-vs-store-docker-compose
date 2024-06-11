@@ -1,11 +1,15 @@
 <script setup lang="ts">
 import AdminSidebar from './components/AdminSidebar.vue'
 import PanelHeader from './components/PanelHeader.vue'
+import NotAllowedPage from './components/NotAllowedPage.vue'
 import { RouterView } from 'vue-router';
+import { useIsAuthorized } from '../composables/useIsAuthorized'
+
+const { isAuthorized } = useIsAuthorized()
 </script>
 
 <template>
-  <div>
+  <div v-if="isAuthorized">
     <div class="grid min-h-screen w-full overflow-hidden lg:grid-cols-[280px_1fr]">
   <div class="hidden border-r bg-gray-100/40 lg:block">
   <admin-sidebar />
@@ -30,6 +34,7 @@ import { RouterView } from 'vue-router';
   </div>
 </div>
   </div>
+  <not-allowed-page v-else />
 </template>
 
 <style scoped>
