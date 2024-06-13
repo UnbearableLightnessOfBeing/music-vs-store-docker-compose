@@ -34,7 +34,7 @@ const categories = ref<Category[]>([]);
     <input-field
       :model-value="form.name"
       name="name"
-      label="Нвзвание"
+      label="Нaзвание"
       placeholder="Введите название"
       required
       @update:model-value="(value: string | number | boolean) => $emit('update:formValue', 'name', value)"
@@ -48,7 +48,7 @@ const categories = ref<Category[]>([]);
       required
       @update:model-value="(value: string | number | boolean) => $emit('update:formValue', 'price_int', value)"
     />
-    <input-field :model-value="''" name="label_id" label="Призводитель">
+    <input-field :model-value="''" name="label_id" label="Прoизводитель">
       <select
         class="border border-primary p-1 rounded-sm"
         :value="form.label_id"
@@ -90,7 +90,7 @@ const categories = ref<Category[]>([]);
       :model-value="form.characteristics"
       :type="InputType.TEXTAREA"
       name="characteristics"
-      label="Характеритики"
+      label="Характериcтики"
       placeholder="Введите описание характеристик"
       @update:model-value="(value: string | number | boolean) => $emit('update:formValue', 'characteristics', value)"
     />
